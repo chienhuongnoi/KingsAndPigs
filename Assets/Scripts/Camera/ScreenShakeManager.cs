@@ -1,0 +1,16 @@
+using Unity.Cinemachine;
+using UnityEngine;
+
+public class ScreenShakeManager : Singleton<ScreenShakeManager>
+{
+    private CinemachineImpulseSource impulseSource;
+    protected override void Awake()
+    {
+        base.Awake();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+    public void ShakeScreen()
+    {
+        impulseSource.GenerateImpulse();
+    }
+}
