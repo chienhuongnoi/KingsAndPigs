@@ -231,7 +231,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   leftEdge: {fileID: 4351146650099198560}
   rightEdge: {fileID: 7794356598088315336}
-  projectilePrefab: {fileID: 3412030755971705303, guid: f027f7189b00f8b4b9d7e51398b6a941, type: 3}
+  projectileTag: bomb
   spawnPoint: {fileID: 2667799024511838547}
 --- !u!70 &8149614875848896834
 CapsuleCollider2D:

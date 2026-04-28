@@ -14,11 +14,13 @@ public class BoxCollision : MonoBehaviour
         if (collision.GetComponent<TilemapCollider2D>())
         {
             destrucableBox.Break();
+            ObjectPool.Instance.ReturnObjectToPool(this.gameObject.tag, this.gameObject);
         }
         if (collision.GetComponent<PlayerHealth>())
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(1, transform);
             destrucableBox.Break();
+            ObjectPool.Instance.ReturnObjectToPool(this.gameObject.tag, this.gameObject);
         }
     }
 }

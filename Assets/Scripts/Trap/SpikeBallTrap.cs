@@ -9,10 +9,10 @@ public class SpikeBallTrap : MonoBehaviour
     [Tooltip("Tốc độ lắc (Càng to lắc càng nhanh)")]
     [SerializeField] private float swingSpeed = 2f;
 
-    [Tooltip("Độ trễ nhịp ban đầu (Giúp nhiều quả cầu cạnh nhau không bị vung cùng một lúc)")]
+    [Tooltip("Độ trễ nhịp ban đầu")]
     [SerializeField] private float timeOffset = 0f;
 
-    [Header("Hiển thị (Chỉ thấy trong Editor)")]
+    [Header("Hiển thị")]
     [Tooltip("Độ dài sợi xích để vẽ đường viền quỹ đạo cho chuẩn")]
     [SerializeField] private float gizmoChainLength = 3f;
 

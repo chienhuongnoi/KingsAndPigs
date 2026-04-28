@@ -8,7 +8,7 @@ public static class SaveManager
 
     public static void Save(GameData data)
     {
-        // Chuyển đổi object thành chuỗi JSON (tham số true giúp file JSON format đẹp, dễ đọc lỗi)
+        // Chuyển đổi object thành chuỗi JSON
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(saveFile, json);
     }
@@ -21,9 +21,9 @@ public static class SaveManager
             return JsonUtility.FromJson<GameData>(json);
         }
 
-        // Nếu file chưa tồn tại (chơi lần đầu), tạo dữ liệu mới
+        // Nếu file chưa tồn tại, tạo dữ liệu mới
         GameData newData = new GameData(totalLevels);
-        Save(newData); // Tạo sẵn file gốc
+        Save(newData);
         return newData;
     }
 }

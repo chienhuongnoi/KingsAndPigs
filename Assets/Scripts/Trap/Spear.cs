@@ -16,6 +16,7 @@ public class Spear : MonoBehaviour
 
     private Animator animator;
     private float attackAnimationLength;
+    private int attackAnimationHash = Animator.StringToHash("SpearAttack");
 
     private void Awake()
     {
@@ -69,7 +70,7 @@ public class Spear : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetTrigger("SpearAttack");
+            animator.SetTrigger(attackAnimationHash);
         }
     }
 }

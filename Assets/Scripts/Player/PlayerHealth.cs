@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private KnockBack knockBack;
     public bool IsDead { get; private set; }
     private Animator animator;
+    private int deadAnimationHash = Animator.StringToHash("isDead");
 
     private void Awake()
     {
@@ -60,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DieRoutine()
     {
         IsDead = true;
-        animator.SetTrigger("isDead");
+        animator.SetTrigger(deadAnimationHash);
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
         GameManager.Instance.GameOver();

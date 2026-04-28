@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class LightingTheMatch : EnemyState //Pickup
 {
+    private int pickupAnimationHash = Animator.StringToHash("LightingTheMatch");
     private float pickupTimer = 0.375f;
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("LightingTheMatch");
+        enemy.anim.Play(pickupAnimationHash);
     }
     public override void LogicUpdate(EnemyBase enemy)
     {
@@ -18,10 +19,11 @@ public class LightingTheMatch : EnemyState //Pickup
 }
 public class LightingTheCannon : EnemyState //Attack
 {
+    private int attackAnimationHash = Animator.StringToHash("LightingTheCannon");
     private float attackTimer = 1f;
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("LightingTheCannon");
+        enemy.anim.Play(attackAnimationHash);
     }
     public override void LogicUpdate(EnemyBase enemy)
     {
@@ -34,31 +36,31 @@ public class LightingTheCannon : EnemyState //Attack
 }
 public class MatchOn : EnemyState //Idle
 {
-
+    private int matchOnAnimationHash = Animator.StringToHash("MatchOn");
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("MatchOn");
+        enemy.anim.Play(matchOnAnimationHash);
     }
     public override void LogicUpdate(EnemyBase enemy)
     {
         PigCannon pig = (PigCannon)enemy;
 
-        // Nếu thấy Player -> Chuyển sang tấn công
         if (pig.PlayerInSight() && pig.canAttack)
         {
-            pig.ChangeState(new LightingTheCannon());
             pig.canAttack = false;
+            pig.ChangeState(new LightingTheCannon());
             return;
         }
     }
 }
 public class PigCannonHitState : EnemyState
 {
-    private float hitStunTimer = 0.5f; // Thời gian bị choáng (khớp với độ dài animation Hit)
+    private int hitAnimationHash = Animator.StringToHash("Hit");
+    private float hitStunTimer = 0.5f;
 
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Hit");
+        enemy.anim.Play(hitAnimationHash);
     }
 
     public override void LogicUpdate(EnemyBase enemy)
@@ -66,16 +68,16 @@ public class PigCannonHitState : EnemyState
         hitStunTimer -= Time.deltaTime;
         if (hitStunTimer <= 0)
         {
-            // Hết choáng, kiểm tra quanh đó xem có ai không để đuổi, không thì đi tuần
             enemy.ChangeState(new MatchOn());
         }
     }
 }
 public class PigCannonDeadState : EnemyState
 {
+    private int deadAnimationHash = Animator.StringToHash("Dead");
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Dead");
+        enemy.anim.Play(deadAnimationHash);
     }
 
     public override void LogicUpdate(EnemyBase enemy)

@@ -16,7 +16,7 @@ public class FireBox : MonoBehaviour
 
     private float attackAnimationLength;
     private Animator animator;
-
+    private int attackAnimationHash = Animator.StringToHash("FireBoxAttack");
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -50,7 +50,7 @@ public class FireBox : MonoBehaviour
     }
     private void Attack()
     {
-        animator.SetTrigger("FireBoxAttack");
+        animator.SetTrigger(attackAnimationHash);
     }
     public void ActivateTrap()
     {

@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  knockBackThrustAmount: 2
+  knockBackThrustAmount: 10
 --- !u!114 &1230870745701045692
 MonoBehaviour:
   m_ObjectHideFlags: 0

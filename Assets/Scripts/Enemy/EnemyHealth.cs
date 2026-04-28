@@ -1,12 +1,12 @@
 using System;
-using UnityEngine; // Giả sử bạn đang dùng Unity
+using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 3;
     private int currentHealth;
 
-    // Khai báo các sự kiện (Events)
+    // Khai báo các sự kiện
     public event Action OnTakeDamage;
     public event Action OnDeath;
 
@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Nếu máu <= 0, phát sự kiện OnDeath (nếu có ai đang nghe)
+            // Nếu máu <= 0, phát sự kiện OnDeath
             OnDeath?.Invoke();
         }
         else

@@ -37,5 +37,6 @@ public class Box : MonoBehaviour
     private void DestroyBox()
     {
         destrucableBox.Break();
+        Destroy(gameObject);
     }
 }

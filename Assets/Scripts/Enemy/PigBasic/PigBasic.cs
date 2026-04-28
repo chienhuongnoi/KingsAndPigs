@@ -42,7 +42,6 @@ public class PigBasic : EnemyBase
     {
         gameObject.transform.localScale = new Vector3(-Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
 
-        //gameObject.transform.position = new Vector3(gameObject.transform.position.x + Time.deltaTime * _direction * moveSpeed, gameObject.transform.position.y, gameObject.transform.position.z);
         rb.linearVelocity = new Vector2(_direction * moveSpeed, rb.linearVelocity.y);
     }
     private void DirectionChange()

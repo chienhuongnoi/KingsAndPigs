@@ -293,7 +293,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   leftEdge: {fileID: 3385418919455829601}
   rightEdge: {fileID: 7850665433730023239}
-  projectilePrefab: {fileID: 8971222868061838376, guid: 9660d003db7015743abc12bfdbae0f85, type: 3}
+  projectileTag: box
   spawnPoint: {fileID: 5533275524733895311}
 --- !u!70 &6812542413855312888
 CapsuleCollider2D:

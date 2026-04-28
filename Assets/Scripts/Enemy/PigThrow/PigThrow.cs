@@ -6,7 +6,7 @@ public class PigThrow : EnemyBase
     [SerializeField] private Transform leftEdge;
     [SerializeField] private Transform rightEdge;
     [Header("Projectile")]
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private string projectileTag;
     [SerializeField] private Transform spawnPoint;
     private bool movingLeft;
     private Vector3 initScale;
@@ -42,7 +42,6 @@ public class PigThrow : EnemyBase
     {
         gameObject.transform.localScale = new Vector3(-Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
 
-        //gameObject.transform.position = new Vector3(gameObject.transform.position.x + Time.deltaTime * _direction * moveSpeed, gameObject.transform.position.y, gameObject.transform.position.z);
         rb.linearVelocity = new Vector2(_direction * moveSpeed, rb.linearVelocity.y);
     }
     private void DirectionChange()
@@ -62,7 +61,10 @@ public class PigThrow : EnemyBase
     [System.Obsolete]
     private void InstantiateObject()
     {
-        Projectile projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        // Projectile projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        Projectile projectile = ObjectPool.Instance.GetObjectFromPool(projectileTag).GetComponent<Projectile>();
+        projectile.transform.position = spawnPoint.position;
+        projectile.transform.rotation = spawnPoint.rotation;
         projectile.Initialize(spawnPoint.position, playerHealth.transform.position);
     }
 }

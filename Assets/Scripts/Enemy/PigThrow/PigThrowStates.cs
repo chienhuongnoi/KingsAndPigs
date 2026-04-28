@@ -1,11 +1,12 @@
 using UnityEngine;
 public class PigThrowPatrolState : EnemyState
 {
+    private int runAnimationHash = Animator.StringToHash("Run");
 
     public override void Enter(EnemyBase enemy)
     {
         // Phát animation Run (giống hình bạn gửi)
-        enemy.anim.Play("Run");
+        enemy.anim.Play(runAnimationHash);
     }
 
     public override void LogicUpdate(EnemyBase enemy)
@@ -24,11 +25,12 @@ public class PigThrowPatrolState : EnemyState
 }
 public class PigThrowIdleState : EnemyState
 {
+    private int idleAnimationHash = Animator.StringToHash("Idle");
     private float waitTimer; // Đứng nghỉ 1.5 giây
 
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Idle"); // Phát animation Idle
+        enemy.anim.Play(idleAnimationHash); // Phát animation Idle
         enemy.StopMoving(); // Dừng di chuyển khi vào trạng thái nghỉ
         waitTimer = enemy.idleDuration;
     }
@@ -55,11 +57,12 @@ public class PigThrowIdleState : EnemyState
 }
 public class PigThrowAttackState : EnemyState
 {
+    private int throwAnimationHash = Animator.StringToHash("Throw");
     private float attackTimer = 1f;
 
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Throw");
+        enemy.anim.Play(throwAnimationHash);
         enemy.PerformAttack();
         enemy.StopMoving(); // Dừng di chuyển khi tấn công
     }
@@ -75,10 +78,11 @@ public class PigThrowAttackState : EnemyState
 }
 public class PigThrowPickupState : EnemyState
 {
+    private int pickupAnimationHash = Animator.StringToHash("Pickup");
     private float pickupTimer = 0.75f; // Thời gian đợi animation nhặt xong (chỉnh theo thực tế)
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Pickup");
+        enemy.anim.Play(pickupAnimationHash);
         // Sau khi nhặt xong sẽ có thể ném, nên không cần làm gì thêm ở đây
     }
 
@@ -94,11 +98,12 @@ public class PigThrowPickupState : EnemyState
 }
 public class PigThrowHitState : EnemyState
 {
+    private int hitAnimationHash = Animator.StringToHash("Hit");
     private float hitStunTimer = 0.5f; // Thời gian bị choáng (khớp với độ dài animation Hit)
 
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Hit");
+        enemy.anim.Play(hitAnimationHash);
     }
 
     public override void LogicUpdate(EnemyBase enemy)
@@ -113,9 +118,11 @@ public class PigThrowHitState : EnemyState
 }
 public class PigThrowDeadState : EnemyState
 {
+    private int deadAnimationHash = Animator.StringToHash("Dead");
+
     public override void Enter(EnemyBase enemy)
     {
-        enemy.anim.Play("Dead");
+        enemy.anim.Play(deadAnimationHash);
     }
 
     public override void LogicUpdate(EnemyBase enemy)

@@ -9,7 +9,7 @@ public class EnemyBase : MonoBehaviour
 
     [Header("Detection")]
     [Tooltip("Chỉnh độ lệch trục X, Y của hộp kiểm tra so với tâm quái vật")]
-    [SerializeField] protected Vector2 sightOffset = new Vector2(1f, 0f); // Thay thế range và colliderDistance cũ
+    [SerializeField] protected Vector2 sightOffset = new Vector2(1f, 0f);
 
     [Tooltip("Chỉnh chiều Rộng (X) và Cao (Y) của hộp kiểm tra")]
     [SerializeField] protected Vector2 sightSize = new Vector2(2f, 1.5f);
@@ -18,10 +18,10 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected CapsuleCollider2D capsuleCollider2D;
     [SerializeField] protected LayerMask playerLayer;
     protected EnemyState currentState;
-    protected EnemyHealth healthScript; // Tham chiếu đến script máu
-    protected PlayerHealth playerHealth; // Tham chiếu đến script máu của Player
+    protected EnemyHealth healthScript;
+    protected PlayerHealth playerHealth;
     protected Rigidbody2D rb;
-    [HideInInspector] public Animator anim; // Thêm Animator vào đây
+    [HideInInspector] public Animator anim;
 
     protected virtual void Awake()
     {
@@ -45,7 +45,6 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    // Các hàm xử lý khi nhận được sự kiện
     protected virtual void HandleHit()
     {
         ChangeState(new PigHitState());
@@ -56,7 +55,6 @@ public class EnemyBase : MonoBehaviour
         ChangeState(new PigDeadState());
     }
 
-    // --- LOGIC STATE MACHINE ---
 
     protected void InitializeState(EnemyState startingState)
     {
@@ -89,7 +87,7 @@ public class EnemyBase : MonoBehaviour
         return hit != null;
     }
 
-    public virtual void PerformAttack() { /* Logic gây sát thương */ }
+    public virtual void PerformAttack() { }
     public void StopMoving()
     {
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
@@ -100,7 +98,6 @@ public class EnemyBase : MonoBehaviour
         {
             Gizmos.color = Color.red;
 
-            // Tính toán lại vị trí vẽ Gizmo y hệt như trong hàm PlayerInSight
             Vector2 boxCenter = new Vector2(
                 capsuleCollider2D.bounds.center.x + sightOffset.x * Mathf.Sign(transform.localScale.x),
                 capsuleCollider2D.bounds.center.y + sightOffset.y

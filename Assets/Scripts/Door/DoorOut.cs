@@ -24,7 +24,6 @@ public class DoorOut : MonoBehaviour
         {
             player.LockControl = true;
             player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            // UnlockNewLevel();
             animator.Play("DoorOut");
         }
     }
@@ -39,13 +38,4 @@ public class DoorOut : MonoBehaviour
         player.gameObject.SetActive(false);
         GameManager.Instance.LevelComplete(GameManager.Instance.currentLevelID, GameManager.Instance.playerScore);
     }
-    // public void UnlockNewLevel()
-    // {
-    //     if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex", 1))
-    //     {
-    //         PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
-    //         PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
-    //         PlayerPrefs.Save();
-    //     }
-    // }
 }

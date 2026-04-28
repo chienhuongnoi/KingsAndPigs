@@ -128,12 +128,10 @@ public class PlayerController1 : MonoBehaviour
          0, Vector2.left, 0, enemyLayer);
         bool hasDetected = false;
 
-        // Duyệt qua từng vật thể chạm phải
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider != null)
             {
-                // Kiểm tra xem đây là Enemy hay Box
                 EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
                 if (enemy != null)
                 {
@@ -141,7 +139,6 @@ public class PlayerController1 : MonoBehaviour
                     hasDetected = true;
                 }
 
-                // Nếu bạn có script cho Box
 
                 Box box = hit.collider.GetComponent<Box>();
                 if (box != null)
@@ -159,7 +156,6 @@ public class PlayerController1 : MonoBehaviour
     {
         if (EnemyInSight())
         {
-            // enemyHealth.TakeDamage(1);
         }
     }
     void OnDrawGizmos()

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab của viên đạn
-    public Transform firePoint; // Điểm bắn (có thể là một child transform)
+    // public GameObject projectilePrefab; // Prefab của viên đạn
+    public Transform firePoint; // Điểm bắn 
     [SerializeField]
-    private PigCannon pigCannon; // Tham chiếu đến script PigCannon
+    private PigCannon pigCannon;
     [Header("Chỉ số súng")]
     public float shootForce = 25f;
     private Animator animator;
@@ -26,19 +26,18 @@ public class Cannon : MonoBehaviour
     {
         animator.SetTrigger("Shoot");
     }
-    // Hàm này sẽ được gọi từ animation event ở khung hình bắn
     public void SpawnProjectile()
     {
-        // Instantiate viên đạn tại vị trí firePoint và với rotation của firePoint
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        // GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectile = ObjectPool.Instance.GetObjectFromPool("ball");
+        projectile.transform.position = firePoint.position;
+        projectile.transform.rotation = firePoint.rotation;
         Vector2 direction = (pigCannon.PlayerPosition() - firePoint.position).normalized;
 
-        // Lấy script Projectile từ viên đạn mới tạo
         CannonBall projectileScript = projectile.GetComponent<CannonBall>();
 
         if (projectileScript != null)
         {
-            // Gọi hàm Initialize để thiết lập vận tốc cho viên đạn
             projectileScript.Initialize(direction, shootForce);
         }
     }

@@ -16,7 +16,7 @@ public class Spike : MonoBehaviour
 
     private Animator animator;
     private float attackAnimationLength;
-
+    private int attackAnimationHash = Animator.StringToHash("SpikeAttack");
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -70,7 +70,7 @@ public class Spike : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetTrigger("SpikeAttack");
+            animator.SetTrigger(attackAnimationHash);
         }
     }
 }

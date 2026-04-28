@@ -14,6 +14,7 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        ObjectPool.Instance.ReturnObjectToPool(this.gameObject.tag, this.gameObject);
     }
 }
